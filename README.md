@@ -1,2 +1,4 @@
-# tiny-editor
-js editor
+# 文本编辑器
+
+具有如下功能：
+- [ ] 自定义 cursor

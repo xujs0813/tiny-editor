@@ -1,0 +1,21 @@
+#head-cursor {
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background-color: aqua;
+}
+#tail-cursor {
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background: red;
+}
+#hidden-input {
+    width: 10px;
+    height: 20px;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    visibility: none;
+    user-select: none;
+}
