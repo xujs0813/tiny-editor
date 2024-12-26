@@ -1,0 +1,31 @@
+.texts {
+    padding: 20px;
+    margin: 12px;
+}
+
+.hidden-input {
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    left: 0;
+    top: 0;
+}
+.search-input {
+    height: 40px;
+}
+.cursor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 20px;
+}
+.head-cursor {
+    background-color: aqua;
+}
+.tail-cursor {
+    background-color: blue;
+}
+.blink-cursor {
+    background-color: red;
+}
