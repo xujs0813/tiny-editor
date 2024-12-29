@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { emitter, EventNames } from "../utils/customEvent";
-import { pos2Coords } from "../core";
+import { pos2Coords } from "../core/pos2Coord";
 
 function HiddenInput() {
   const [row, setRow] = useState<number>(1);
