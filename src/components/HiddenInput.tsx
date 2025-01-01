@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { emitter, EventNames } from "@/utils/customEvent";
+import {insertText} from '@/data/index'
 
 interface IStyle {
     top: number;
@@ -7,10 +8,11 @@ interface IStyle {
 }
 
 function HiddenInput() {
+    const [val, setVal] = useState<string>('');
     const [style, setStyle] = useState<IStyle>(null);
     const refInput = useRef<HTMLInputElement>(null);
     const refFocus = useRef<boolean>(false);
-    
+
     useEffect(() => {
         const handleUpdateStyle = (data) => {
             const { top, left } = data;
@@ -35,6 +37,8 @@ function HiddenInput() {
     const handleChange = useCallback((event) => {
         const value = event.target.value;
         console.log("value: ", value);
+        insertText(value)
+        setVal('');
     }, []);
 
     const handleFocus = useCallback(() => {
@@ -50,6 +54,7 @@ function HiddenInput() {
             className="hidden-input"
             style={style}
             ref={refInput}
+            value={val}
             onChange={handleChange}
             onFocus={handleFocus}
             onBlur={handleBlur}

@@ -6,6 +6,7 @@ const EventNames = {
   UpdateCursorStyle: "UpdateCursorStyle",
   UpdateInputStyle: "UpdateInputStyle",
   FocusInput: "FocusInput",
+  OnSelectionChange: 'OnSelectionChange',
 };
 
 export { emitter, EventNames };

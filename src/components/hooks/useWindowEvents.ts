@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import { coords2Pos } from "@/dom/coords2Pos";
-import { pos2Coords } from "@/dom/pos2Coord";
 import { emitter, EventNames } from "@/utils/customEvent";
+import {updateSelection} from '@/data/selection'
 
 export default function useWindowEvents() {
     useEffect(() => {
         const handleMouseUp = (event) => {
-            const { clientX, clientY } = event;
-            const { $ele, pos } = coords2Pos(clientX, clientY);
-            const style = pos2Coords($ele, pos);
-            emitter.emit(EventNames.UpdateCursorStyle, style || null);
+            const { clientX, clientY, target } = event;
+            const { pos } = coords2Pos(clientX, clientY);
+            if(pos > -1){
+                updateSelection({blockId: target.dataset.id, start: pos, end: pos})
+            }
 
             emitter.emit(EventNames.FocusInput);
         };

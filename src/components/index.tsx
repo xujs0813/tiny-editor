@@ -5,9 +5,11 @@ import Cursor from "./Cursor";
 import { EventNames } from "@/utils/customEvent";
 import useWindowEvents from "./hooks/useWindowEvents";
 import Search from "./Search";
+import useSelectionChange from './hooks/useSelectionChange'
 
 function Index() {
     useWindowEvents();
+    useSelectionChange()
 
     return (
         <>
