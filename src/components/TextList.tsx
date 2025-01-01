@@ -1,4 +1,4 @@
-import { Texts } from "../constants/";
+import { Texts } from "@/constants/";
 
 function Index() {
   return (

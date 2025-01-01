@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { emitter, EventNames } from "../utils/customEvent";
-import { pos2Coords } from "../core/pos2Coord";
+import { emitter, EventNames } from "@/utils/customEvent";
+import { pos2Coords } from "@/dom/pos2Coord";
 
 function HiddenInput() {
   const [row, setRow] = useState<number>(1);
@@ -20,7 +20,7 @@ function HiddenInput() {
     const $texts = document.querySelector("#texts");
     const $item = $texts?.childNodes[row];
     const style = pos2Coords($item?.firstChild, pos);
-    emitter.emit(EventNames.UpdateBlinkCursor, style || null);
+    emitter.emit(EventNames.UpdateCursorStyle, style || null);
   }, [row, pos]);
 
   return (

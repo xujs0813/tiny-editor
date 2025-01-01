@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
-import { emitter } from "../utils/customEvent";
+import { emitter } from "@/utils/customEvent";
 
 interface IProps {
   className: string;
   eventType: string;
 }
 
+interface IStyle {
+  left: number
+  top: number
+}
+
 function Cursor(props: IProps) {
   const { eventType, className } = props;
-  const [style, setStyle] = useState<any>(null);
+  const [style, setStyle] = useState<IStyle>(null);
   useEffect(() => {
     if (!eventType) {
       return;

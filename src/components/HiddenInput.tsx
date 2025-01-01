@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
-import { emitter, EventNames } from "../utils/customEvent";
+import { emitter, EventNames } from "@/utils/customEvent";
+
+interface IStyle {
+  top: number;
+  left: number;
+}
 
 function HiddenInput() {
-  const [style, setStyle] = useState<any>(null);
+  const [style, setStyle] = useState<IStyle>(null);
   useEffect(() => {
     const handleUpdateStyle = (data) => {
-      console.log("data: ", data);
       const { top, left } = data;
       setStyle({ top, left });
     };
 
-    emitter.on(EventNames.UpdateInput, handleUpdateStyle);
+    emitter.on(EventNames.UpdateInputStyle, handleUpdateStyle);
     return () => {
-      emitter.off(EventNames.UpdateInput, handleUpdateStyle);
+      emitter.off(EventNames.UpdateInputStyle, handleUpdateStyle);
     };
   }, []);
   return <input className="hidden-input" style={style} />;

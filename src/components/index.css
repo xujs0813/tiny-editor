@@ -1,6 +1,7 @@
 .texts {
     padding: 20px;
     margin: 12px;
+    user-select: none;
 }
 
 .hidden-input {

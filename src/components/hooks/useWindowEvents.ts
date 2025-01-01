@@ -1,27 +1,22 @@
 import { useEffect } from "react";
-import { getRangeEndPos, getRangeHeadPos } from "../../core/range";
-import { EventNames, emitter } from "../../utils/customEvent";
-import { caretFromPoint } from '../../core/caretFromPoint'
+import { coords2Pos } from "@/dom/coords2Pos";
+import { pos2Coords } from "@/dom/pos2Coord";
+import { emitter, EventNames } from "@/utils/customEvent";
 
 export default function useWindowEvents() {
-  useEffect(() => {
-    const handleMouseUp = (event) => {
-      const headPos = getRangeHeadPos();
-      emitter.emit(EventNames.UpdateHeadCursor, headPos);
+    useEffect(() => {
+        const handleMouseUp = (event) => {
+            const { clientX, clientY } = event;
+            const { $ele, pos } = coords2Pos(clientX, clientY);
+            const style = pos2Coords($ele, pos);
+            emitter.emit(EventNames.UpdateCursorStyle, style || null);
+        };
 
-      const tailPos = getRangeEndPos();
-      emitter.emit(EventNames.UpdateTailCursor, tailPos);
+        const $ele = document.querySelector("#texts");
 
-      const {clientX, clientY} = event
-      caretFromPoint(clientX, clientY)
-    };
-
-    const $ele = document.querySelector('#texts')
-
-    $ele!.addEventListener("mouseup", handleMouseUp);
-
-    return () => {
-      $ele!.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, []);
+        $ele!.addEventListener("mouseup", handleMouseUp);
+        return () => {
+            $ele!.removeEventListener("mouseup", handleMouseUp);
+        };
+    }, []);
 }
