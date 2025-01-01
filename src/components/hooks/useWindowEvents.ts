@@ -10,6 +10,8 @@ export default function useWindowEvents() {
             const { $ele, pos } = coords2Pos(clientX, clientY);
             const style = pos2Coords($ele, pos);
             emitter.emit(EventNames.UpdateCursorStyle, style || null);
+
+            emitter.emit(EventNames.FocusInput);
         };
 
         const $ele = document.querySelector("#texts");
